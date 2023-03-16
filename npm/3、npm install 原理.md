@@ -2,7 +2,7 @@
 
 
 
-![整体流程](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/整体流程.png)
+![整体流程](./install原理/整体流程.png)
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-![嵌套结构1](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/嵌套结构1.png)
+![嵌套结构1](./install原理/嵌套结构1.png)
 
 
 
@@ -52,7 +52,7 @@
 
 
 
-![嵌套结构2](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/嵌套结构2.png)
+![嵌套结构2](./install原理/嵌套结构2.png)
 
 
 
@@ -69,9 +69,9 @@
 
 
 
-![扁平结构1](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/扁平结构1.png)
+![扁平结构1](./install原理/扁平结构1.png)
 
-![扁平结构2](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/扁平结构2.png)
+![扁平结构2](./install原理/扁平结构2.png)
 
 此时我们若在模块中又依赖了 `base64-js@1.0.1` 版本：
 
@@ -92,13 +92,13 @@
 
 
 
-![install目录结构](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/install目录结构.png)
+![install目录结构](./install原理/install目录结构.png)
 
 
 
 
 
-![base64](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/base64.png)
+![base64](./install原理/base64.png)
 
 对应的，如果我们在项目代码中引用了一个模块，模块查找流程如下：
 
@@ -112,7 +112,7 @@
 
 
 
-![buffer-base64](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/buffer-base64.png)
+![buffer-base64](./install原理/buffer-base64.png)
 
 
 
@@ -124,7 +124,7 @@
 
 
 
-![buffer2](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/buffer2.png)
+![buffer2](./install原理/buffer2.png)
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-![buffer](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/buffer.png)
+![buffer](./install原理/buffer.png)
 
 
 
@@ -203,7 +203,7 @@
 
 
 
-![package-lock.json整体关系](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/package-lock.json整体关系.png)
+![package-lock.json整体关系](./install原理/package-lock.json整体关系.png)
 
 最外面的两个属性 `name` 、`version` 同 `package.json` 中的 `name` 和 `version` ，用于描述当前包名称和版本。
 
@@ -221,7 +221,7 @@
 
 
 
-![回顾依赖关系](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/回顾依赖关系.png)
+![回顾依赖关系](./install原理/回顾依赖关系.png)
 
 
 
@@ -259,7 +259,7 @@ grep "https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz" -r index-v5
 
 
 
-![grep](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/grep.png)
+![grep](./install原理/grep.png)
 
 然后我们将json格式化：
 
@@ -300,7 +300,7 @@ grep "https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz" -r index-v5
 
 上面的 `_shasum` 属性 `6926d1b194fbc737b8eed513756de2fcda7ea408` 即为 `tar` 包的 `hash`， `hash`的前几位 `6926` 即为缓存的前两层目录，我们进去这个目录果然找到的压缩后的依赖包：
 
-![hash值](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/hash值.png)
+![hash值](./install原理/hash值.png)
 
 
 
@@ -328,7 +328,7 @@ grep "https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz" -r index-v5
 
 
 
-![文件完整性](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/文件完整性.png)
+![文件完整性](./install原理/文件完整性.png)
 
 
 
@@ -381,6 +381,6 @@ grep "https://registry.npmjs.org/base64-js/-/base64-js-1.0.1.tgz" -r index-v5
 
 
 
-![整体流程](/Users/wangyue/Desktop/my/learn/doc/npm/install原理/整体流程.png)
+![整体流程](./install原理/整体流程.png)
 
 上面的过程简要描述了 `npm install` 的大概过程，这个过程还包含了一些其他的操作，例如执行你定义的一些生命周期函数，你可以执行 `npm install package --timing=true --loglevel=verbose` 来查看某个包具体的安装流程和细节。
