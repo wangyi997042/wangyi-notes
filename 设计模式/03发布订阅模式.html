@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        发布订阅：
+         + 有一个对象，有人一直看着他
+         + 当这个对象发生变化的时候，第三方通知这个看着的人，触发技能
+
+         + 例子： 买书
+         => 去书店， 问， 没有， 回家
+         => 过一会再去， 问， 没有， 回家
+
+         + 发布订阅式 买书
+          => 去书店， 问 ， 没有， 留下一个联系方式给店员
+          => 一旦有了书， 就会接到电话
+          => 触发技能买书
+
+        + 对比观察者模式 只需要一个构造函数
+         => 创建一个第三方店员的身份
+         => 我们的任务就是模拟一个 addEventListiner()
+
+        分析构造函数：
+         + 属性 ： 消息队列
+         {
+             click: [fn1, fn2],
+             abc: [fn1, fn2, fn3]
+         }
+         + 方法：能向消息队列里面添加内容
+         + 方法：删除消息队列里面的内容
+         + 方法：触发消息队列里面的内容
+     -->
+
+
+    <script>
+        class Observer {
+            constructor() {
+                this.message = {};
+            }
+            // 1. 向消息队列里面添加内容
+            on (type, fn) {
+                // type 拜托的行为
+                // fn 需要你帮我做的事情
+                // this.message[type] = [fn]
+
+                // 1. 判断message里有没有这个行为
+                if(!this.message[type]) {
+                    this.message[type] = [];
+                    console.log('i get')
+                }
+                this.message[type].push(fn);
+
+            };
+            // 2. 删除消息队列里面的内容
+            off(type, fn) {
+                if(!fn) {
+                    delete this.message[type]
+                    return
+                }
+                if(!this.message[type]) return;
+                this.message[type] = this.message[type].filter(item => item !== fn)
+
+            }
+            // 3. 触发消息队列
+            trigger(type) {
+                if(!this.message[type]) return;
+
+                this.message[type].forEach(item => {
+                    item()
+                })
+            }
+        };
+
+        // 使用构造函数创建一个实例
+        const personA = new Observer();
+
+        // 当你向拜托 personA 帮你观察一些内容的时候
+        // 告诉你一个行为，当行为出现的时候，告诉你干什么
+        personA.on('a', handleA)
+        personA.on('b', handleB)
+        personA.on('a', handleC)
+        personA.on('b', handleD)
+
+        // 告诉personA ， 我这个事情不用做了
+        // 1、告诉你这个事情不用做了
+        personA.off('a', handleC)
+
+        personA.trigger('a')
+        console.log(personA)
+
+        function handleA() { console.log('handleA') }
+        function handleB() { console.log('handleB') }
+        function handleC() { console.log('handleC') }
+        function handleD() { console.log('handleD') }
+        function handleE() { console.log('handleE') }
+        function handleF() { console.log('handleF') }
+        function handleG() { console.log('handleG') }
+    </script>
+</body>
+</html>

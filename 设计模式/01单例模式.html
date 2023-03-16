@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div.tip {
+        width: 500px;
+        height: 300px;
+        border: 1px solid #333;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        background-color: #fff;
+      }
+      div.tip > .top {
+        height: 20px;
+        background-color: skyblue;
+        padding: 10px;
+      }
+      div.tip > .top > span {
+        float: right;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: #fff;
+        font-size: 16px;
+        text-align: center;
+        line-height: 20px;
+      }
+      .tip > .content {
+        height: 210px;
+      }
+      .tip > .content > p {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        padding: 0 20px;
+        width: calc(100% - 40px);
+        text-align: center;
+      }
+      .tip > .btns {
+        height: 40px;
+        background-color: skyblue;
+        padding: 5px 30px;
+      }
+      .tip > .btns > button {
+        float: right;
+        padding: 10px 40px;
+        margin-left: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 自定义弹出层 -->
+    <!-- <div class="tip">
+      <div class="top">标题<span>x</span></div>
+      <div class="content">
+        <p>提示内容</p>
+      </div>
+      <div class="btns">
+        <button>确定</button>
+        <button>取消</button>
+      </div>
+    </div> -->
+  </body>
+</html>
+
+<script>
+  //   const t = new Tip()
+  //   t.setContent('你好')
+  //   new Tip()
+  //   new Tip()
+  //   new Tip()
+
+  const Tip = (function () {
+    class Tip {
+      constructor() {
+        this.ele = document.createElement("div");
+        this.ele.className = "tip";
+        document.body.appendChild(this.ele);
+        this.callback = function () {};
+        this.bindEvent();
+      }
+      setContent(txt) {
+        this.ele.innerHTML = `<div class="top">标题<span class="close">x</span></div>
+        <div class="content">
+            <p>${txt}</p>
+        </div>
+        <div class="btns">
+            <button class="cancel">取消</button>
+            <button class="ok">确定</button>
+        </div>`;
+        this.ele.style.display = "block";
+      }
+      setStyle(val) {
+        this.ele.querySelector(".top").style.backgroundColor = val;
+      }
+      bindEvent() {
+        this.ele.addEventListener("click", (e) => {
+          e = e || window.event;
+          const target = e.target || e.srcElement;
+          if (target.className === "close") {
+            this.ele.style.display = "none";
+            this.callback("close");
+          }
+          if (target.className === "cancel") {
+            this.ele.style.display = "none";
+            this.callback("cancel");
+          }
+          if (target.className === "ok") {
+            this.ele.style.display = "none";
+            this.callback("ok");
+          }
+        });
+      }
+    }
+
+    let instance = null;
+    return function (options, cb) {
+      if (!instance) instance = new Tip();
+
+      instance.setContent(options.txt || "提示内容！！");
+      instance.setStyle(options.topBG || "skyblue");
+      instance.callback = cb || function () {};
+      return instance;
+    };
+  })();
+
+  //   Tip('你好世界', function(res) {console.log('change', res)});
+  Tip(
+    {
+      txt: "你好世界",
+      topBG: "red",
+    },
+    function (res) {
+      console.log("change", res);
+    }
+  );
+</script>

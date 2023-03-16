@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+        + 观察者 和 发布订阅模式 两个设计模式
+     -->
+  </body>
+</html>
+<script>
+  /**
+   * 观察模式
+   *  + 例子： 监控
+   *  => 学生 被观察者
+   *  => 老师 观察者
+   *
+   * 监控一个对象的状态，一旦状态发生变化，马上触发技能
+   *  => 需要两个构造函数来实现
+   * 1、观察者和被观察者
+   *
+   */
+  // 观察者
+  class Observer {
+    constructor(name, fn) {
+      this.name = name;
+      this.fn = fn;
+    }
+  }
+
+  // 被观察者
+  class Subject {
+      constructor(state){
+          // 记录自己的状态
+          this.state = state;
+          // 保存观察者
+          this.observers = [];
+      }
+      // 设置我的状态
+      setState(val){
+          this.state = val;
+          // 触发观察者的技能
+          this.observers.forEach(item => {
+              // 传入我的状态
+              item.fn(this.state);
+          })
+      }
+      // 添加观察者
+      addObserver(obs) {
+          // 如果观察者已经存在 不再添加
+        //   1、some
+            // const res = this.observers.some(item => item === obs)
+            // 2、find
+            // const res = this.observers.find(item => item === obs)
+            // 3. indexOf
+            // const res = this.observers.indexOf(obs)
+            // 4. filter
+            // const res = this.observers.filter(item => item === obs)
+            this.observers = this.observers.filter(item => item !== obs)
+            this.observers.push(obs)
+      }
+      delObserver(obs) {
+          this.observers = this.observers.filter(item => item !== obs)
+      }
+  }
+
+
+  const bzr = new Observer("班主任", (state) => {
+    console.log('因为：'+state+"叫家长");
+  });
+  const xz = new Observer("校长", (state) => {
+    console.log('因为：'+state+"找班主任");
+  });
+
+    // 创建一个被观察者
+    const xiaoming = new Subject('学习')
+    xiaoming.addObserver(bzr);
+    xiaoming.addObserver(xz);
+    console.log(xiaoming)
+
+</script>

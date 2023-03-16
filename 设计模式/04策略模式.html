@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 策略模式
+        + 一个问题匹配多个解决方案，不一定要用到哪一个
+        + 而且有可能随时还会继续增加多个方案
+        + 例子： 购物车结算
+         => 我们有好多种折扣计算方式
+         => 满100 减 10
+         => 满200 减 25
+         => 8折
+         => 7折
+
+    1、 把我们的多种方案，以闭包的形式保存起来
+        + 对外留一个接口
+        + 可以添加和减少
+    -->
+</body>
+</html>
+<script>
+    const calcPrice = (function() {
+        const sale = {
+            '100_10': function(price) {return price -= 10},
+            '200_25': function(price) {return price -= 25},
+            '80%': function(price) {return price *= 0.8},
+        }
+        function calcPrice(price, type){
+            // console.log(price, type);
+            if(!sale[type]) return '没有这个折扣'
+            return sale[type](price)
+        }
+        calcPrice.add = function(type, fn) {
+            if(sale[type]) return '该折扣已存在'
+
+            sale[type] = fn;
+            return '添加成功'
+        }
+        calcPrice.del = function(type) {
+            delete sale[type]
+        }
+        return calcPrice
+    })()
+
+    calcPrice.add('70%', function(price){ return price *= 0.7 })
+    const res = calcPrice(320, '70%')
+    console.log(res, calcPrice)
+    // // 接收两个参数， 价格， 折扣种类
+    // function calcPrice(price, type) {
+    //     if(typs === '100_10'){
+
+    //     }
+    // }
+    // // 将来使用的时候
+    // const res = calcPrice(320, '100_10')
+</script>
