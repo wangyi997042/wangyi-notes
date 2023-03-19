@@ -1,16 +1,16 @@
-function sortArr(arr) {
-  for (let i = 0; i < arr.length - 1; i++) {
+function insertSort(arr) {
+  let newArr = [arr[0]]
 
-    for (let j = 0; j < arr.length; i++) {
-      if (arr[j] > arr[j + 1]) {
-        const ele = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = arr[j]
+  for (let i = 1; i < arr.length; i++) {
+    newArr.push(arr[i]);
+    for (let j = 0; j < arr.length; j++) {
+      if (newArr[newArr.length - j - 1] < newArr[newArr.length - j - 2]) {
+        const ele = newArr[newArr.length - j - 1];
+        newArr[newArr.length - j - 1] = newArr[newArr.length - j - 2];
+        newArr[newArr.length - j - 2] = newArr[ele]
+
       }
     }
   }
+  return newArr;
 }
-
-let arr = [3, 4, 5, 6, 7, 3, 2, 2, 2, 344, 233]
-sortArr(arr)
-console.log(arr);
