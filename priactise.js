@@ -1,16 +1,24 @@
-function insertSort(arr) {
-  let newArr = [arr[0]]
+
+
+function quickSort(arr) {
+
+  if (arr.length <= 1) {
+    return arr
+  }
+
+  let pivot = arr[0],
+    left = [],
+    right = [];
 
   for (let i = 1; i < arr.length; i++) {
-    newArr.push(arr[i]);
-    for (let j = 0; j < arr.length; j++) {
-      if (newArr[newArr.length - j - 1] < newArr[newArr.length - j - 2]) {
-        const ele = newArr[newArr.length - j - 1];
-        newArr[newArr.length - j - 1] = newArr[newArr.length - j - 2];
-        newArr[newArr.length - j - 2] = newArr[ele]
-
-      }
+    if (arr[i] < pivot) {
+      left.push(arr[i])
+    } else {
+      right.push(arr[i])
     }
   }
-  return newArr;
+  return [...quickSort(left), pivot, ...quickSort(right)]
 }
+
+var arr = [9, 3, 10, 6, 2, 8];
+console.log(quickSort(arr));
