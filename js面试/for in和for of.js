@@ -1,6 +1,5 @@
 
 // for in遍历的是数组的索引（index），而for of遍历的是数组元素值（value）
-// for in遍历的是数组的索引（即键名），而for of遍历的是数组元素值
 
 // for in总是得到对象的key或数组、字符串的下标
 

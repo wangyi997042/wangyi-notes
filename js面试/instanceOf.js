@@ -10,3 +10,7 @@ const instanceOf = (left, right) => {
     proto = proto.__proto__;
   }
 };
+
+
+console.log(instanceOf({}, Object)); // false;
+// {} instanceof Object

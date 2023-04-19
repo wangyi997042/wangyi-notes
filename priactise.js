@@ -1,24 +1,15 @@
+function instanceOf(left, right) {
+  let proto = left.__proto__;
+  let prototype = right.prototype;
 
-
-function quickSort(arr) {
-
-  if (arr.length <= 1) {
-    return arr
-  }
-
-  let pivot = arr[0],
-    left = [],
-    right = [];
-
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i])
-    } else {
-      right.push(arr[i])
+  while (true) {
+    if (proto === null) {
+      return false
+    } else if (proto === prototype) {
+      return true
     }
+    proto = proto.__proto__;
   }
-  return [...quickSort(left), pivot, ...quickSort(right)]
 }
 
-var arr = [9, 3, 10, 6, 2, 8];
-console.log(quickSort(arr));
+console.log(instanceOf({}, Function.prototype.__proto__)); // false;
