@@ -1,9 +1,17 @@
 # nvm 安装
-
+### windows 安装
 - 1、https://github.com/coreybutler/nvm-windows/releases 下载 exe 版本就行
 - 2、安装路径上文件不可有空格
 - 3、之后使用 nvm 命令测试即可
 - 4、要先安装 nvm 再安装 node 否则容易找不到这个 node 版本
+
+### mac 安装
+1、先把本地的node删除
+2、查看本地 安装的包  npm ls -g --depth=0
+3、删除本地全局node包 sudo rm -rf /usr/local/lib/node_modules
+4、删除本地node包 sudo rm /usr/local/bin/node
+5、官网安装 https://github.com/nvm-sh/nvm/blob/master/README.md
+
 
 # nrm 安装
 
