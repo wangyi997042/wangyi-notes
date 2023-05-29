@@ -1,5 +1,7 @@
 常用命令：
 
+- 查看本地项目地址 `git remote -v`
+
 - eslint 不过强制 commit
   git commit --no-verify -m “merge”
   git commit --no-verify -m "feat: 续保领奖页 202"
