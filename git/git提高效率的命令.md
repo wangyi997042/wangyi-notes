@@ -2,6 +2,12 @@
 
 - 查看本地项目地址 `git remote -v`
 
+- 查看/修改本地用户名和邮箱地址
+  git config user.name
+  git config user.email
+  git config --global user.name "Your Name"
+  git config --global user.email "your-email@example.com"
+
 - eslint 不过强制 commit
   git commit --no-verify -m “merge”
   git commit --no-verify -m "feat: 续保领奖页 202"
@@ -13,6 +19,50 @@
 - 将某分支上的 commit 合并到另一个分支上
   git cherry-pick
   例如：git cherry-pick d91b138566aa3e624bbc590a2a0180dbeee0a28e 切换到目标分支使用此方法
+
+# 配置 ssh
+
+### mac 配置
+
+- 生成 SSH 密钥对：在终端中输入以下命令：
+  `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+  这会生成一个 SSH 密钥对。您需要将其保存在默认的路径中（按 Enter 键），并设置一个密码以保护您的私钥。
+
+- 将公钥添加到您的 GitHub 帐户：在终端中输入以下命令：
+  `cat ~/.ssh/id_rsa.pub`
+  这会将您的公钥输出到终端。将其复制并粘贴到您的 GitHub 帐户的 SSH 密钥设置中。
+
+- 配置 Git 使用 SSH：在终端中输入以下命令：
+  `git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"`
+  这会告诉 Git 使用您的 SSH 私钥进行身份验证。
+
+- 现在您已经成功地配置了 Git SSH。之后，您可以使用 SSH URL 克隆您的 GitHub 存储库，例如：
+  `git clone git@github.com:your-username/your-repository.git`
+  这将使用 SSH 克隆您的存储库。
+
+### windows 配置
+
+在 Windows 上配置 Git SSH，您可以按照以下步骤进行操作：
+
+- 下载和安装 Git for Windows：您可以从 下载 Git for Windows 安装程序，并按照提示进行安装。
+
+- 打开 Git Bash 终端：在 Windows 上，您可以通过单击“开始”按钮并键入“Git Bash”来打开 Git Bash 终端。
+
+- 生成 SSH 密钥对：在 Git Bash 终端中输入以下命令：
+  `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
+  这会生成一个 SSH 密钥对。您需要将其保存在默认的路径中（按 Enter 键），并设置一个密码以保护您的私钥。
+
+- 将公钥添加到您的 GitHub 帐户：在 Git Bash 终端中输入以下命令：
+  `cat ~/.ssh/id_rsa.pub`
+  这会将您的公钥输出到终端。将其复制并粘贴到您的 GitHub 帐户的 SSH 密钥设置中。
+
+- 配置 Git 使用 SSH：在 Git Bash 终端中输入以下命令：
+  `git config --global core.sshCommand "ssh -i ~/.ssh/id_rsa"`
+  这会告诉 Git 使用您的 SSH 私钥进行身份验证。
+
+- 现在您已经成功地配置了 Git SSH。之后，您可以使用 SSH URL 克隆您的 GitHub 存储库，例如：
+  `git clone git@github.com:your-username/your-repository.git`
+  这将使用 SSH 克隆您的存储库。
 
 # 1、 stash
 

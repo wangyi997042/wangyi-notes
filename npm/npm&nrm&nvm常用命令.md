@@ -11,6 +11,9 @@ eg: 解除引用 npm unlink gulp
 npm config get/set registry
 eg:npm config set registry http://registry.npmjs.org
 
+npm config set/get username "your-username"
+npm config set/get email "your-email@example.com"
+
 增加版本号
 npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prereleas [--preid=<prerelease-id>] | from-git]
 eg: npm version prerelease --preid=alpha
