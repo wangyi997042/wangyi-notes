@@ -18,6 +18,9 @@ npm config set/get email "your-email@example.com"
 npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prereleas [--preid=<prerelease-id>] | from-git]
 eg: npm version prerelease --preid=alpha
 
+npm show packagename versions 显示包的版本号
+npm update 升级本地库到最新版本
+
 # nvm 安装
 
 ### windows 安装
