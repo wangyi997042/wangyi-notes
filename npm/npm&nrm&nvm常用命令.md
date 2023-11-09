@@ -38,6 +38,14 @@ npm update 升级本地库到最新版本
 4、删除本地 node 包 sudo rm /usr/local/bin/node
 5、官网安装 https://github.com/nvm-sh/nvm/blob/master/README.md
 
+### 常用命令
+- nvm install stable  安装最新稳定版 node
+- nvm install <version>  安装指定版本，如：安装v4.4.0，nvm install v4.4.0
+- nvm uninstall <version>  删除已安装的指定版本，语法与install类似
+- nvm use <version>  切换使用指定的版本node
+- nvm ls  列出所有安装的版本
+- nvm alias default <version>  如： nvm alias default v11.1.0 设置默认版本node
+
 # nrm 安装
 
 - 1、安装好 nvm 和 node 后直接命令行安装 npm i nrm -g
