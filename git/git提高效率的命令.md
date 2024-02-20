@@ -20,6 +20,10 @@
   git cherry-pick
   例如：git cherry-pick d91b138566aa3e624bbc590a2a0180dbeee0a28e 切换到目标分支使用此方法
 
+- 网络不好提交失败时，设置代理
+  git config --global http.proxy 127.0.0.1:7891  
+  git config --global https.proxy 127.0.0.1:7891  
+
 # 配置 ssh
 
 ### mac 配置
