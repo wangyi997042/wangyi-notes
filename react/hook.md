@@ -1,68 +1,297 @@
-# 1. useState
-- 作用: 用于在函数组件中声明状态变量。
-- 特点:
-  每次状态更新都会触发组件重新渲染。
- 接受初始状态值作为参数。
-返回一个状态值和更新状态的函数。
-- 使用场景:
-管理组件内部的状态，例如表单输入值、计数器等。
-```
-const [count, setCount] = useState(0);
+### **React 常用 Hook 介绍**
 
-function increment() {
-  setCount(count + 1);
+React 的 Hook 是在函数组件中使用状态和生命周期的方式。以下是 React 中常用的 Hook 及其详细介绍：
+
+---
+
+## **1. `useState`**
+- **作用**: 用于在函数组件中声明状态变量。
+- **特点**:
+  - 接受一个初始状态值作为参数。
+  - 返回一个状态值和更新状态的函数。
+  - 每次状态更新都会触发组件重新渲染。
+- **使用场景**:
+  - 管理组件内部的状态，例如表单输入值、计数器等。
+
+### **示例**
+```javascript
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
 }
 ```
 
-# 2. useEffect
-- 作用: 用于处理副作用，例如数据获取、订阅、手动 DOM 操作等。
-- 特点:
-接受一个回调函数和依赖数组。
-依赖数组为空时，回调函数只在组件挂载和卸载时执行。
-依赖数组中指定的变量发生变化时，回调函数会重新执行。
-- 使用场景:
-数据获取、订阅事件、清理操作等。
+---
 
+## **2. `useEffect`**
+- **作用**: 用于处理副作用，例如数据获取、订阅、手动 DOM 操作等。
+- **特点**:
+  - 接受一个回调函数和依赖数组。
+  - 依赖数组为空时，回调函数只在组件挂载和卸载时执行。
+  - 依赖数组中指定的变量发生变化时，回调函数会重新执行。
+- **使用场景**:
+  - 数据获取、订阅事件、清理操作等。
+
+### **示例**
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount(c => c + 1);
+    }, 1000);
+
+    return () => clearInterval(interval); // 清理定时器
+  }, []);
+
+  return <p>Timer: {count}</p>;
+}
 ```
-useEffect(() => {
-  console.log('Component mounted or updated');
-  return () => {
-    console.log('Component unmounted');
+
+---
+
+## **3. `useContext`**
+- **作用**: 用于在组件树中共享状态，而无需通过 props 一层层传递。
+- **特点**:
+  - 与 `React.createContext` 配合使用。
+  - 直接访问上下文中的值。
+- **使用场景**:
+  - 全局状态管理，例如主题、用户信息等。
+
+### **示例**
+```javascript
+import React, { createContext, useContext } from 'react';
+
+const ThemeContext = createContext('light');
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar() {
+  const theme = useContext(ThemeContext);
+  return <p>Current theme: {theme}</p>;
+}
+```
+
+---
+
+## **4. `useReducer`**
+- **作用**: 用于管理复杂状态逻辑，类似于 Redux 的 reducer。
+- **特点**:
+  - 接受一个 reducer 函数和初始状态。
+  - 返回当前状态和 dispatch 函数。
+- **使用场景**:
+  - 状态逻辑复杂或多个状态相互关联时。
+
+### **示例**
+```javascript
+import React, { useReducer } from 'react';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+    </div>
+  );
+}
+```
+
+---
+
+## **5. `useRef`**
+- **作用**: 用于访问 DOM 元素或保存可变值。
+- **特点**:
+  - 返回一个可变的 `ref` 对象，其 `.current` 属性可以存储值。
+  - 更新 `ref` 的值不会触发组件重新渲染。
+- **使用场景**:
+  - 获取 DOM 元素的引用。
+  - 保存组件生命周期内的可变值。
+
+### **示例**
+```javascript
+import React, { useRef } from 'react';
+
+function InputFocus() {
+  const inputRef = useRef();
+
+  const focusInput = () => {
+    inputRef.current.focus();
   };
-}, [dependency]);
 
+  return (
+    <div>
+      <input ref={inputRef} type="text" />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+}
 ```
 
-# 3. useMemo
-- 作用: 用于缓存计算结果，避免不必要的重复计算。
-- 特点:
-接受一个工厂函数和依赖数组。
-只有依赖数组中的值发生变化时，才会重新计算。
-返回缓存的值。
-- 使用场景:
-优化性能，避免在每次渲染时重复执行昂贵的计算。
+---
 
-```
-const memoizedValue = useMemo(() => {
-  return computeExpensiveValue(a, b);
-}, [a, b]);
+## **6. `useMemo`**
+- **作用**: 用于缓存计算结果，避免不必要的重复计算。
+- **特点**:
+  - 接受一个工厂函数和依赖数组。
+  - 只有依赖数组中的值发生变化时，才会重新计算。
+  - 返回缓存的值。
+- **使用场景**:
+  - 优化性能，避免在每次渲染时重复执行昂贵的计算。
+
+### **示例**
+```javascript
+import React, { useState, useMemo } from 'react';
+
+function ExpensiveCalculation({ num }) {
+  const result = useMemo(() => {
+    console.log('Calculating...');
+    return num * 2;
+  }, [num]);
+
+  return <p>Result: {result}</p>;
+}
 ```
 
-# 4. useCallback
-- 作用: 用于缓存函数实例，避免不必要的函数重新创建。
-- 特点:
-接受一个回调函数和依赖数组。
-只有依赖数组中的值发生变化时，才会返回新的函数实例。
-返回缓存的函数。
-- 使用场景:
-优化性能，避免子组件因父组件传递的函数引用变化而重新渲染。
+---
 
-```
-const memoizedCallback = useCallback(() => {
-  doSomething(a, b);
-}, [a, b]);
+## **7. `useCallback`**
+- **作用**: 用于缓存函数实例，避免不必要的函数重新创建。
+- **特点**:
+  - 接受一个回调函数和依赖数组。
+  - 只有依赖数组中的值发生变化时，才会返回新的函数实例。
+  - 返回缓存的函数。
+- **使用场景**:
+  - 优化性能，避免子组件因父组件传递的函数引用变化而重新渲染。
 
+### **示例**
+```javascript
+import React, { useState, useCallback } from 'react';
+
+function Parent() {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => {
+    setCount(c => c + 1);
+  }, []);
+
+  return <Child onClick={increment} />;
+}
+
+function Child({ onClick }) {
+  console.log('Child rendered');
+  return <button onClick={onClick}>Increment</button>;
+}
 ```
+
+---
+
+## **8. `useId`**
+- **作用**: 用于生成稳定的唯一 ID，适合在服务端渲染（SSR）和客户端渲染中使用。
+- **特点**:
+  - 避免手动生成 ID。
+- **使用场景**:
+  - 表单元素的 `id` 和 `label` 关联。
+
+### **示例**
+```javascript
+import React, { useId } from 'react';
+
+function Form() {
+  const id = useId();
+
+  return (
+    <div>
+      <label htmlFor={id}>Name</label>
+      <input id={id} type="text" />
+    </div>
+  );
+}
+```
+
+---
+
+## **9. `useTransition`**
+- **作用**: 用于处理并发更新，标记非紧急的状态更新。
+- **特点**:
+  - 返回一个布尔值 `isPending` 和一个函数 `startTransition`。
+  - 标记的更新会被延迟处理。
+- **使用场景**:
+  - 优化用户体验，避免界面卡顿。
+
+### **示例**
+```javascript
+import React, { useState, useTransition } from 'react';
+
+function App() {
+  const [list, setList] = useState([]);
+  const [isPending, startTransition] = useTransition();
+
+  const handleClick = () => {
+    startTransition(() => {
+      const newList = Array(10000).fill(0).map((_, i) => i);
+      setList(newList);
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Generate List</button>
+      {isPending ? <p>Loading...</p> : <ul>{list.map(i => <li key={i}>{i}</li>)}</ul>}
+    </div>
+  );
+}
+```
+
+---
+
+## **总结**
+
+| Hook 名称       | 作用                                   | 使用场景                           |
+|------------------|----------------------------------------|------------------------------------|
+| `useState`       | 管理状态                               | 组件内部状态管理                   |
+| `useEffect`      | 处理副作用                             | 数据获取、订阅事件、清理操作       |
+| `useContext`     | 使用上下文                             | 全局状态共享                       |
+| `useReducer`     | 管理复杂状态逻辑                       | 替代 Redux 的轻量状态管理          |
+| `useRef`         | 获取 DOM 或保存可变值                  | 访问 DOM 元素或保存组件生命周期内的值 |
+| `useMemo`        | 缓存计算结果                           | 优化性能，避免重复计算             |
+| `useCallback`    | 缓存函数实例                           | 避免子组件因函数引用变化而重新渲染 |
+| `useId`          | 生成唯一 ID                            | 表单元素的 ID 关联                 |
+| `useTransition`  | 标记非紧急更新                         | 优化用户体验，避免界面卡顿         |
+
+通过合理使用这些 Hook，可以更高效地管理状态、优化性能并提升开发体验。
+
+找到具有 1 个许可证类型的类似代码
 
 
 # React 中 `useCallback` 和 `useMemo` 的区别

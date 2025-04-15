@@ -136,7 +136,6 @@ function Counter() {
 #### **2. `useDispatch`**
 - 用于分发 Action。
 ```javascript
-```javascript
 import { useDispatch } from 'react-redux';
 
 function Counter() {

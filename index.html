@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    h1, h2, h3 {
+      color: #444;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="content"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // 示例 Markdown 内容
+    const markdownContent = `
+# 常用方法总结
+
+- **Array.prototype.map()**: 对数组中的每个元素执行回调函数，返回新数组。
+- **Array.prototype.filter()**: 筛选符合条件的元素，返回新数组。
+- **Array.prototype.reduce()**: 累积数组中的值，返回单个结果。
+
+\`\`\`javascript
+const arr = [1, 2, 3, 4, 5];
+
+// map
+const doubled = arr.map(x => x * 2); // [2, 4, 6, 8, 10]
+
+// filter
+const evens = arr.filter(x => x % 2 === 0); // [2, 4]
+\`\`\`
+    `;
+
+    // 使用 marked 渲染 Markdown
+    const htmlContent = marked(markdownContent);
+
+    // 将渲染后的 HTML 插入页面
+    document.getElementById('content').innerHTML = htmlContent;
+  </script>
+</body>
+</html>
