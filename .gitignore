@@ -1,2 +1,69 @@
+# Node.js
 **/node_modules/
-.Ds_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs
+**/logs/
+*.log
+logs/*.log
+
+# Build output
+**/dist/
+**/build/
+**/out/
+
+# Dependency directories
+jspm_packages/
+.bower_components/
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+*.iml
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Git
+.git/
+.gitignore
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+*.patch
+
+# Test coverage
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~

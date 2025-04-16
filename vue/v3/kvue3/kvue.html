@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KVue3 测试</title>
+</head>
+<body>
+  <!-- 测试区域 -->
+  <div id="app">
+    <!-- 测试 k-text 指令 -->
+    <p k-text="message"></p>
+
+    <!-- 测试 k-html 指令 -->
+    <div k-html="htmlContent"></div>
+
+    <!-- 测试动态更新 -->
+    <button onclick="updateMessage()">更新消息</button>
+    <button onclick="updateHtml()">更新 HTML 内容</button>
+  </div>
+
+  <script>
+    // 引入 KVue3 的实现代码
+    // 假设 KVue3 的实现代码已经在此处引入
+
+    // 创建 KVue3 实例
+    const vm = new KVue3({
+      el: "#app",
+      data: {
+        message: "Hello Vue 3!",
+        htmlContent: "<strong>Bold Text</strong>",
+      },
+    });
+
+    // 测试动态更新
+    function updateMessage() {
+      vm.$data.message = "消息已更新！";
+    }
+
+    function updateHtml() {
+      vm.$data.htmlContent = "<em>Italic Text</em>";
+    }
+  </script>
+</body>
+</html>
