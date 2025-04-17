@@ -1,0 +1,19 @@
+{
+  "name": "wangyi-notes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "priactise.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangyi997042/wangyi-notes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangyi997042/wangyi-notes/issues"
+  },
+  "homepage": "https://github.com/wangyi997042/wangyi-notes#readme",
+}

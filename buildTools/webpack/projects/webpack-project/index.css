@@ -1,0 +1,10 @@
+@import './other.css';
+body{
+    background-color: red;
+
+}
+img{
+    width: 100px;
+    height: 100px;
+    column-count: 3;
+}
