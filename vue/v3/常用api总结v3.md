@@ -208,6 +208,8 @@ export default {
 - **`onBeforeUnmount`**: 组件卸载之前。
 - **`onUnmounted`**: 组件卸载完成。
 
+setup相当于 vue2 的 created
+
 ### **示例**
 ```javascript
 import { onMounted, onUnmounted } from 'vue';

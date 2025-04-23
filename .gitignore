@@ -72,3 +72,8 @@ Desktop.ini
 
 # umi
 **/.umi/
+**/.mfsu-dev/
+**/.mfsu/
+**/.mfsu-prod/
+**/.umi-production/
+**/.husky/

@@ -6,16 +6,19 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      component: () => import (/* webpackChunkName: "home" */ '@/layout/index.vue'),
+      children: [
+        {
+          path: 'home',
+          name: 'home',
+          component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+          meta: {
+            index: 1
+          }
+        },
+      ]
     },
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
-      meta: {
-        index: 1
-      }
-    },
+
     {
       path: '/category',
       name: 'category',

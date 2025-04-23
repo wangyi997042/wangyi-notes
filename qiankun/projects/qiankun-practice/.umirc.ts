@@ -43,9 +43,7 @@ export default defineConfig({
     { path: '/foo', name: 'foo', component: '@/pages/foo/index' },
     { path: '/bar', name: 'bar', component: '@/pages/bar/index' },
     { path: '/app2', microApp: 'app2', microAppProps: { a: 111 } },
-    { path: '/app3', microApp: 'iyb-generate-web', },
     { path: '/renewal', microApp: 'wangyi-project', },
-    { path: '/app5', microApp: 'iyb-micro-product-pc', },
   ],
   qiankun: {
     master: {

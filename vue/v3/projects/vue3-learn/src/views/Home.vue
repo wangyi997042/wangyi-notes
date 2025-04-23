@@ -66,14 +66,14 @@
 </template>
 
 <script>
-import { reactive, onMounted, toRefs, nextTick } from 'vue'
+import { reactive, onMounted, toRefs } from 'vue'; //nextTick
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import swiper from '@/components/Swiper.vue'
 import navBar from '@/components/NavBar'
-import { getHome } from '@/service/home';
+// import { getHome } from '@/service/home';
 import { getLocal } from '@/common/js/utils';
-import { Toast } from 'vant';
+// import { Toast } from 'vant';
 
 export default {
   name: 'home-view',
@@ -84,6 +84,8 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
+    console.log(store, router);
+    
     const state = reactive({
       swiperList: [], // 轮播图列表
       isLogin: false, // 是否已登录
