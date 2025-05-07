@@ -41,10 +41,15 @@ npm config set registry http://registry.npmjs.org
 
 但是鉴于实际情况，我们在`taobao`和`npm`源之间互相切换其实太麻烦了，比较好的解决方案就是配置`package.json`中的`publishConfig`字段。
 
-可以使用`npm adduser` 添加用户信息
+先登录
+```
+npm login
+```
 
+可以使用`npm adduser` 添加用户信息
 ```text
 npm adduser --registry http://your_ip:4873 
+
 // 后续需要填写自己的相关信息 
 // 填完回车就可以
 ```
