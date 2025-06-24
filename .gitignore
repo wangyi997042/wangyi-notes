@@ -77,3 +77,9 @@ Desktop.ini
 **/.mfsu-prod/
 **/.umi-production/
 **/.husky/
+
+
+# python
+.venv/
+venv/
+__pycache__/
