@@ -395,7 +395,7 @@ public class IODemo {
 
         // 2. 简单网络通信（客户端Socket，类似前端fetch请求）
         try (Socket socket = new Socket("localhost", 8080); // 连接本地8080端口
-             OutputStream os = socket.getOutputStream()) {
+            OutputStream os = socket.getOutputStream()) {
             String request = "Hello Server";
             os.write(request.getBytes()); // 发送数据到服务器
             System.out.println("数据发送成功");

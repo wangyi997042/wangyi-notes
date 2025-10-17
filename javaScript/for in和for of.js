@@ -5,7 +5,6 @@
 
 // for of总是得到对象的value或数组、字符串的值
 
-/*
 const arr = [1, 2, 3, 4, 5];
 
 const obj = {
@@ -24,19 +23,17 @@ for (const i in obj) { // 输出 mark jack amy
 
 
 // for in
-var obj = {a:1, b:2, c:3}
+// var obj = {a:1, b:2, c:3}
     
-for (let key in obj) {
-  console.log(key)
-}
+// for (let key in obj) {
+//   console.log(key)
+// }
 // a b c
 
 //for of
-const array1 = ['a', 'b', 'c']
+// const array1 = ['a', 'b', 'c']
 
-for (const val of array1) {
-  console.log(val)
-}
+// for (const val of array1) {
+//   console.log(val)
+// }
 // a b c
-
-*/
