@@ -1,5 +1,15 @@
 以下是 **Webpack 常用的 Loader 和 Plugin** 的详细介绍，涵盖了它们的作用、安装方法和配置示例，帮助快速掌握 Webpack 的扩展功能。
 
+
+### **1. Babel 是什么**
+- Babel 是一个 JavaScript 转译器/编译器（transpiler），把现代 JS（ES6+、JSX、TypeScript 等）转换为向后兼容的 JavaScript，便于在不同浏览器/环境运行。
+功能点：语法转换、Polyfill（通过 @babel/polyfill 或 core-js）、代码降级、插件/预设机制。
+
+### **2. Plugin 是什么（通用说明 + 两类常见用法）**
+- 通用：Plugin（插件）是扩展工具功能的模块，通过钩子/API 改变或增强处理流程。
+- Babel Plugin：对源码的抽象语法树（AST）进行变换的函数/模块，用来实现语法转换或自定义编译行为（如把箭头函数转成兼容写法）。
+- Webpack Plugin：通过钩子接入 webpack 编译器，能在构建生命周期的各个阶段做自定义处理（如生成文件、清理目录、注入变量、HMR 支持等）。
+
 ---
 
 # **Webpack 常用 Loader**
