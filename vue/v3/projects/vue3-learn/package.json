@@ -10,45 +10,30 @@
   },
   "dependencies": {
     "ant-design-vue": "^4.2.6",
-    "axios": "^0.20.0",
-    "better-scroll": "^2.3.0",
-    "core-js": "^3.6.5",
-    "js-md5": "^0.7.3",
-    "lib-flexible": "^0.3.2",
+    "axios": "^1.13.2",
+    "better-scroll": "^2.5.1",
+    "core-js": "^3.47.0",
+    "js-md5": "^0.8.3",
     "pushstate-server": "^3.1.0",
-    "qiankun": "^2.10.16",
-    "vant": "^3.0.0-beta.5",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0-beta.13",
-    "vue2-verify": "^1.1.5",
-    "vuex": "^4.0.0-beta.4"
+    "vant": "^4.9.22",
+    "vue": "^3.5.25",
+    "vue-router": "^4.6.4",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "babel-eslint": "^10.1.0",
-    "babel-plugin-import": "^1.13.1",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0-0",
-    "less": "^3.12.2",
-    "less-loader": "^7.0.2",
-    "postcss-pxtorem": "^5.1.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+    "@babel/eslint-parser": "^7.25.1",
+    "@vue/cli-plugin-babel": "~5.0.9",
+    "@vue/cli-plugin-eslint": "~5.0.9",
+    "@vue/cli-service": "~5.0.9",
+    "@vue/compiler-sfc": "^3.5.25",
+    "babel-plugin-import": "^1.13.8",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.18.1",
+    "less": "^4.5.1",
+    "less-loader": "^11.1.4",
+    "postcss-px-to-viewport": "^1.1.1",
+    "postcss-pxtorem": "^6.1.0",
+    "vue-eslint-parser": "^9.3.1"
   },
   "browserslist": [
     "> 1%",
