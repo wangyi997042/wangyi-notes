@@ -24,13 +24,15 @@
 <script>
 import { onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import {useStore} from "vuex"
 import { getLocal } from '@/common/js/utils';
+import { useMainStore } from '@/store'
 
 export default {
   setup() {
     const route = useRoute()
-    const store = useStore()
+    const store = useMainStore()
+    console.log('nav-bar===', store.state);
+    
     onMounted(() => {
       const token = getLocal('token')
       const path = route.path;
@@ -39,7 +41,7 @@ export default {
       }
     })
     const count = computed(() => {
-      return store.state.cartCount
+      return store.cartCount
     })
 
     return {

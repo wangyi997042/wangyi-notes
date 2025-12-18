@@ -5,7 +5,7 @@
       <div class="header-search">
         <span class="app-name">新蜂商城</span>
         <i class="iconfont icon-search"></i>
-        <router-link  class="search-title" to="./product-list?from=home">山河无恙，人间皆安</router-link>
+        <router-link  class="search-title" to="./home">山河无恙，人间皆安</router-link>
       </div>
       <router-link class="login" to="./login" v-if="!isLogin">登录</router-link>
       <router-link class="login" to="./user" v-else>
@@ -68,12 +68,14 @@
 <script>
 import { reactive, onMounted, toRefs } from 'vue'; //nextTick
 import { useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 import swiper from '@/components/Swiper.vue'
 // import navBar from '@/components/NavBar'
 // import { getHome } from '@/service/home';
 import { getLocal } from '@/common/js/utils';
 // import { Toast } from 'vant';
+
+import { useMainStore } from '@/store'
+
 
 export default {
   name: 'home-view',
@@ -82,9 +84,9 @@ export default {
     // navBar
   },
   setup() {
-    const store = useStore();
+    const store = useMainStore()
     const router = useRouter();
-    console.log(store, router);
+    console.log('cesssssss', store, router);
     
     const state = reactive({
       swiperList: [], // 轮播图列表
@@ -231,6 +233,7 @@ export default {
     flex-wrap: wrap;
     width: 100%;
     padding-bottom: 13px;
+    margin-top: 50px;
     div {
       display: flex;
       flex-direction: column;

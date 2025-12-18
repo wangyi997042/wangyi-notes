@@ -1,13 +1,15 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import { ActionBar, ActionBarIcon, ActionBarButton, Divider, Popup, Overlay, Loading, Dialog, ContactCard, Form, AddressEdit, AddressList, Field, CellGroup, Cell, SwipeCell, Icon, Stepper, Card, Checkbox, CheckboxGroup, Button, Swipe, SwipeItem, PullRefresh, List, Tab, Tabs, SubmitBar, Toast, Skeleton } from 'vant'
 
 import App from './App.vue'
 import router from './router';
-import store from './store';
 
 import 'vant/lib/index.css'; // 全局引入样式
 
 const app = createApp(App);
+const pinia = createPinia();
+app.use(pinia)
 
 app.use(ActionBarButton)
   .use(ActionBarIcon)
@@ -42,7 +44,6 @@ app.use(ActionBarButton)
   .use(Skeleton)
 
 app.use(router)
-app.use(store)
 app.mount('#app')
 
 // createApp(App).mount('#app')
